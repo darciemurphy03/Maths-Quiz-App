@@ -21,11 +21,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,9 +28,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     Button SignOut;
-    EditText data_input;
-    Button add, remove, get;
-    TextView data_output;
 
     @Override
     protected void onStart() {
@@ -61,61 +53,13 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         createSignInIntent();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance(Insert Your DB Ref Here!);
-        DatabaseReference myRef = database.getReference("User");
-        myRef.setValue("Hello, World!");
-
-        SignOut = (Button) findViewById(R.id.signout_btn);
+        SignOut = (Button) findViewById(R.id.btnSignout);
         SignOut.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 signOut();
             }
         });
-
-        data_input = (EditText) findViewById(R.id.data_txt);
-        data_output = (TextView) findViewById(R.id.output_txt);
-
-        add = (Button) findViewById(R.id.add_btn);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String data = data_input.getText().toString();
-                myRef.setValue(data);
-            }
-        });
-
-        remove = (Button) findViewById(R.id.remove_btn);
-        remove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                myRef.removeValue();
-            }
-        });
-
-        get = (Button) findViewById(R.id.get_btn);
-        get.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String dbOutput = snapshot.getValue(String.class);
-                        data_output.setText(dbOutput);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-
-            }
-        });
-
-
-
     }
 
     public void createSignInIntent(){
@@ -124,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
                 new AuthUI.IdpConfig.AnonymousBuilder().build());
 
+        // Create and Launch sign-in intent
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
@@ -134,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     private void onSignInResult(FirebaseAuthUIAuthenticationResult result){
         IdpResponse response = result.getIdpResponse();
         if(result.getResultCode()==RESULT_OK){
+            // successfully signed in
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
         }else{
