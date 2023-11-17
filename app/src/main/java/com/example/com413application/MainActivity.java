@@ -19,13 +19,15 @@ import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
+    BottomNavigationView bottomNavigationView;
     private FirebaseAuth mAuth;
     Button SignOut;
 
@@ -61,7 +63,18 @@ public class MainActivity extends AppCompatActivity {
                 signOut();
             }
         });
+
+        bottomNavigationView
+                = findViewById(R.id.bottom_navigation);
+
+        //bottomNavigationView
+                //.setOnNavigationItemSelectedListener(MainActivity.this);
+       // bottomNavigationView.setSelectedItemId(R.id.fl_wrapper);
     }
+    HomePage homePage = new HomePage();
+    RecipesPage recipesPage = new RecipesPage();
+    RandomisePage randomisePage = new RandomisePage();
+    CaloriesPage caloriesPage = new CaloriesPage();
 
     public void createSignInIntent(){
         List<AuthUI.IdpConfig> providers = Arrays.asList(
@@ -98,4 +111,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 }
