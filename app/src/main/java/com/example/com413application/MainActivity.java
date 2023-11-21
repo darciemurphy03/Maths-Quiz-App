@@ -5,23 +5,15 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import com.example.com413application.HomePage;
-import com.example.com413application.RecipesPage;
-import com.example.com413application.RandomisePage;
-import com.example.com413application.CaloriesPage;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
-import android.view.MenuItem;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
@@ -29,7 +21,6 @@ import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -75,36 +66,34 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        final HomePage homePage = new HomePage();
-        final RecipesPage recipesPage = new RecipesPage();
-        final RandomisePage randomisePage = new RandomisePage();
-        final CaloriesPage caloriesPage = new CaloriesPage();
+        final MultiplyPage multiplyPage = new MultiplyPage();
+        final DividePage dividePage = new DividePage();
+        final AddPage addPage = new AddPage();
+        final SubtractPage subtractPage = new SubtractPage();
 
-        setCurrentFragment(homePage);
+        setCurrentFragment(multiplyPage);
 
         bottom_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
-                if (itemId == R.id.nav_home) {
-                    setCurrentFragment(homePage);
-                    Log.i(TAG, "Home Selected");
-                } else if (itemId == R.id.nav_recipes) {
-                    setCurrentFragment(recipesPage);
-                    Log.i(TAG, "Recipes Selected");
-                } else if (itemId == R.id.nav_randomise) {
-                    setCurrentFragment(randomisePage);
-                    Log.i(TAG, "Randomise Selected");
-                } else if (itemId == R.id.nav_calorieTracker) {
-                    setCurrentFragment(caloriesPage);
-                    Log.i(TAG, "Calorie Tracker Selected");
+                if (itemId == R.id.nav_multiply) {
+                    setCurrentFragment(multiplyPage);
+                    Log.i(TAG, "Multiply Selected");
+                } else if (itemId == R.id.nav_divide) {
+                    setCurrentFragment(dividePage);
+                    Log.i(TAG, "Divide Selected");
+                } else if (itemId == R.id.nav_add) {
+                    setCurrentFragment(addPage);
+                    Log.i(TAG, "Add Selected");
+                } else if (itemId == R.id.nav_subtract) {
+                    setCurrentFragment(subtractPage);
+                    Log.i(TAG, "Subtract Selected");
                 }
                 return true;
             }
         });
-
-
     }
 
 

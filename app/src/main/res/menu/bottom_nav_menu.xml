@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/home_icon"
-        android:title="Home" />
+        android:id="@+id/nav_multiply"
+        android:icon="@drawable/multiply_icon"
+        android:title="Multiply" />
 
     <item
-        android:id="@+id/nav_recipes"
-        android:icon="@drawable/recipes_icon"
-        android:title="Recipes" />
+        android:id="@+id/nav_divide"
+        android:icon="@drawable/divide_icon"
+        android:title="Divide" />
 
     <item
-        android:id="@+id/nav_randomise"
-        android:icon="@drawable/randomise_icon"
-        android:title="Randomise" />
+        android:id="@+id/nav_add"
+        android:icon="@drawable/add_icon"
+        android:title="Add" />
 
     <item
-        android:id="@+id/nav_calorieTracker"
-        android:icon="@drawable/calories_icon"
-        android:title="Calorie Tracker" />
+        android:id="@+id/nav_subtract"
+        android:icon="@drawable/subtract_icon"
+        android:title="Subtract" />
 </menu>
