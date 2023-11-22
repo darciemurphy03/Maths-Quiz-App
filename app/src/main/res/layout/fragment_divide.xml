@@ -11,7 +11,7 @@
 
         <ImageView
             android:id="@+id/iv_recipes"
-            android:src="@drawable/divide1"
+            android:src="@drawable/divideicon"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_centerInParent="true" />
