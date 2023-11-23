@@ -26,6 +26,7 @@ public class MultiplyPage extends Fragment {
     int questionNumber = 0;
     String answer;
     DatabaseReference questionRef, choice1Ref, choice2Ref, choice3Ref, choice4Ref, answerRef;
+    String qNumber = String.valueOf(questionNumber);
 
 
     public MultiplyPage() {
@@ -48,11 +49,72 @@ public class MultiplyPage extends Fragment {
         updateQuestion();
         updateChoice();
 
+        // Button 1
+        btnChoice1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (btnChoice1.getText().equals(answer)) {
+                    score = score + 1;
+                    updateScore(score);
+                    updateQuestion();
+                } else {
+                    updateQuestion();
+                }
+            }
+        });
+
+        // Button 2
+        btnChoice2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (btnChoice2.getText().equals(answer)) {
+                    score = score + 1;
+                    updateScore(score);
+                    updateQuestion();
+                } else {
+                    updateQuestion();
+                }
+            }
+        });
+
+        // Button 3
+        btnChoice3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (btnChoice3.getText().equals(answer)) {
+                    score = score + 1;
+                    updateScore(score);
+                    updateQuestion();
+                } else {
+                    updateQuestion();
+                }
+            }
+        });
+
+        // Button 4
+        btnChoice4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (btnChoice4.getText().equals(answer)) {
+                    score = score + 1;
+                    updateScore(score);
+                    updateQuestion();
+                } else {
+                    updateQuestion();
+                }
+            }
+        });
+
         return view;
     }
 
+    private void updateScore(int score) {
+        scoreView.setText("" + score);
+    }
+
     public void updateQuestion() {
-        questionRef = FirebaseDatabase.getInstance().getReference().child(String.valueOf(questionNumber)).child("question");
+        String qNumber = String.valueOf(questionNumber);
+        questionRef = FirebaseDatabase.getInstance().getReference().child(qNumber).child("question");
 
         questionRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -70,7 +132,7 @@ public class MultiplyPage extends Fragment {
 
         public void updateChoice() {
 
-            choice1Ref = FirebaseDatabase.getInstance().getReference().child(String.valueOf(questionNumber)).child("choice1");
+            choice1Ref = FirebaseDatabase.getInstance().getReference().child(qNumber).child("choice1");
             choice1Ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
