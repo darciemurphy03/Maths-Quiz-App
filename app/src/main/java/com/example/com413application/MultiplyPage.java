@@ -22,7 +22,8 @@ public class MultiplyPage extends Fragment {
     TextView scoreView;
     TextView questionView;
     Button btnChoice1, btnChoice2, btnChoice3, btnChoice4;
-    int score;
+    int score = 0;
+    int questionNumber = 0;
     String answer;
     DatabaseReference questionRef, choice1Ref, choice2Ref, choice3Ref, choice4Ref, answerRef;
 
@@ -51,7 +52,7 @@ public class MultiplyPage extends Fragment {
     }
 
     public void updateQuestion() {
-        questionRef = FirebaseDatabase.getInstance().getReference().child("0").child("question");
+        questionRef = FirebaseDatabase.getInstance().getReference().child(String.valueOf(questionNumber)).child("question");
 
         questionRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -65,13 +66,11 @@ public class MultiplyPage extends Fragment {
 
             }
         });
-
     }
-
 
         public void updateChoice() {
 
-            choice1Ref = FirebaseDatabase.getInstance().getReference().child("0").child("choice1");
+            choice1Ref = FirebaseDatabase.getInstance().getReference().child(String.valueOf(questionNumber)).child("choice1");
             choice1Ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -86,7 +85,7 @@ public class MultiplyPage extends Fragment {
             });
 
 
-            choice2Ref = FirebaseDatabase.getInstance().getReference().child("0").child("choice2");
+            choice2Ref = FirebaseDatabase.getInstance().getReference().child(String.valueOf(questionNumber)).child("choice2");
             choice2Ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -100,7 +99,7 @@ public class MultiplyPage extends Fragment {
                 }
             });
 
-            choice3Ref = FirebaseDatabase.getInstance().getReference().child("0").child("choice3");
+            choice3Ref = FirebaseDatabase.getInstance().getReference().child(String.valueOf(questionNumber)).child("choice3");
             choice3Ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -113,7 +112,7 @@ public class MultiplyPage extends Fragment {
                     String a = "";
                 }
             });
-            choice4Ref = FirebaseDatabase.getInstance().getReference().child("0").child("choice4");
+            choice4Ref = FirebaseDatabase.getInstance().getReference().child(String.valueOf(questionNumber)).child("choice4");
             choice4Ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -126,6 +125,21 @@ public class MultiplyPage extends Fragment {
 
                 }
             });
+
+            answerRef = FirebaseDatabase.getInstance().getReference().child(String.valueOf(questionNumber)).child("answer");
+            answerRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    answer = dataSnapshot.getValue(String.class);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            questionNumber++;
 
         }
 }
