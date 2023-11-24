@@ -21,13 +21,12 @@ public class MultiplyPage extends Fragment {
 
     TextView scoreView;
     TextView questionView;
+    TextView qNumberDisplay;
     Button btnChoice1, btnChoice2, btnChoice3, btnChoice4;
     int score = 0;
     int questionNumber = 0;
     String answer;
     DatabaseReference questionRef, choice1Ref, choice2Ref, choice3Ref, choice4Ref, answerRef;
-    String qNumber = String.valueOf(questionNumber);
-
 
     public MultiplyPage() {
         //
@@ -40,70 +39,79 @@ public class MultiplyPage extends Fragment {
 
         scoreView = (TextView)view.findViewById(R.id.score);
         questionView = (TextView)view.findViewById(R.id.question);
+        qNumberDisplay = (TextView)view.findViewById(R.id.qNumberText);
 
         btnChoice1 = (Button)view.findViewById(R.id.choice1);
         btnChoice2 = (Button)view.findViewById(R.id.choice2);
         btnChoice3 = (Button)view.findViewById(R.id.choice3);
         btnChoice4 = (Button)view.findViewById(R.id.choice4);
 
-        updateQuestion();
-        updateChoice();
+            updateQuestion();
+            updateChoice();
 
-        // Button 1
-        btnChoice1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (btnChoice1.getText().equals(answer)) {
-                    score = score + 1;
-                    updateScore(score);
-                    updateQuestion();
-                } else {
-                    updateQuestion();
+            // Button 1
+            btnChoice1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (btnChoice1.getText().equals(answer)) {
+                        score = score + 1;
+                        updateScore(score);
+                        updateQuestion();
+                        updateChoice();
+                    } else {
+                        updateQuestion();
+                        updateChoice();
+                    }
                 }
-            }
-        });
+            });
 
-        // Button 2
-        btnChoice2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (btnChoice2.getText().equals(answer)) {
-                    score = score + 1;
-                    updateScore(score);
-                    updateQuestion();
-                } else {
-                    updateQuestion();
+            // Button 2
+            btnChoice2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (btnChoice2.getText().equals(answer)) {
+                        score = score + 1;
+                        updateScore(score);
+                        updateQuestion();
+                        updateChoice();
+                    } else {
+                        updateQuestion();
+                        updateChoice();
+                    }
                 }
-            }
-        });
+            });
 
-        // Button 3
-        btnChoice3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (btnChoice3.getText().equals(answer)) {
-                    score = score + 1;
-                    updateScore(score);
-                    updateQuestion();
-                } else {
-                    updateQuestion();
+            // Button 3
+            btnChoice3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (btnChoice3.getText().equals(answer)) {
+                        score = score + 1;
+                        updateScore(score);
+                        updateQuestion();
+                        updateChoice();
+                    } else {
+                        updateQuestion();
+                        updateChoice();
+                    }
                 }
-            }
-        });
+            });
 
-        // Button 4
-        btnChoice4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (btnChoice4.getText().equals(answer)) {
-                    score = score + 1;
-                    updateScore(score);
-                    updateQuestion();
-                } else {
-                    updateQuestion();
+            // Button 4
+            btnChoice4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (btnChoice4.getText().equals(answer)) {
+                        score = score + 1;
+                        updateScore(score);
+                        updateQuestion();
+                        updateChoice();
+                    } else {
+                        updateQuestion();
+                        updateChoice();
+                    }
                 }
-            }
-        });
+            });
 
         return view;
     }
@@ -113,7 +121,10 @@ public class MultiplyPage extends Fragment {
     }
 
     public void updateQuestion() {
+
         String qNumber = String.valueOf(questionNumber);
+        String displayQuestion = String.valueOf(questionNumber + 1);
+        qNumberDisplay.setText("Question " + displayQuestion);
         questionRef = FirebaseDatabase.getInstance().getReference().child(qNumber).child("question");
 
         questionRef.addValueEventListener(new ValueEventListener() {
@@ -132,7 +143,7 @@ public class MultiplyPage extends Fragment {
 
         public void updateChoice() {
 
-            choice1Ref = FirebaseDatabase.getInstance().getReference().child(qNumber).child("choice1");
+            choice1Ref = FirebaseDatabase.getInstance().getReference().child(String.valueOf(questionNumber)).child("choice1");
             choice1Ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -180,6 +191,7 @@ public class MultiplyPage extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String choice = dataSnapshot.getValue(String.class);
                     btnChoice4.setText(choice);
+                        questionNumber++;
                 }
 
                 @Override
@@ -200,8 +212,5 @@ public class MultiplyPage extends Fragment {
 
                 }
             });
-
-            questionNumber++;
-
         }
 }
