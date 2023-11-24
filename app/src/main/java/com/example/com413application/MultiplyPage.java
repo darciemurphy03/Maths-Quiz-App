@@ -1,5 +1,6 @@
 package com.example.com413application;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,8 @@ public class MultiplyPage extends Fragment {
     TextView questionView;
     TextView qNumberDisplay;
     Button btnChoice1, btnChoice2, btnChoice3, btnChoice4;
-    int score = 0;
+    public int score;
+    public int score2;
     int questionNumber = 0;
     String answer;
     DatabaseReference questionRef, choice1Ref, choice2Ref, choice3Ref, choice4Ref, answerRef;
@@ -192,6 +194,12 @@ public class MultiplyPage extends Fragment {
                     String choice = dataSnapshot.getValue(String.class);
                     btnChoice4.setText(choice);
                         questionNumber++;
+                    if (questionNumber == 9) {
+
+                        Intent i = new Intent(getActivity(), scoreDisplayPage.class);
+                        startActivity(i);
+
+                    }
                 }
 
                 @Override
