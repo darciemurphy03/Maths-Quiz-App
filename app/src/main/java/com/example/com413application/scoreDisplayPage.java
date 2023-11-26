@@ -20,8 +20,9 @@ public class scoreDisplayPage extends AppCompatActivity {
 
         scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
         btn_return = (Button)findViewById(R.id.btn_return);
-        MultiplyPage multiplyPage = new MultiplyPage();
-        scoreDisplay.setText("Score: " + multiplyPage.score);
+
+        int score = getIntent().getIntExtra("SCORE_KEY", 0);
+        scoreDisplay.setText("Score: " + score);
 
         btn_return.setOnClickListener(new View.OnClickListener() {
             @Override
