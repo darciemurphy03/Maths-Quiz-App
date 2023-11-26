@@ -99,7 +99,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/multiplyTitle"
+        android:id="@+id/divideTitle"
         android:layout_width="134dp"
         android:layout_height="39dp"
         android:layout_marginTop="53dp"

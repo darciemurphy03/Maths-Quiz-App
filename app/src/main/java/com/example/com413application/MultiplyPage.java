@@ -194,7 +194,7 @@ public class MultiplyPage extends Fragment {
                     String choice = dataSnapshot.getValue(String.class);
                     btnChoice4.setText(choice);
                         questionNumber++;
-                    if (questionNumber == 10) {
+                    if (questionNumber == 11) {
 
                         Intent i = new Intent(getActivity(), scoreDisplayPage.class);
                         i.putExtra("SCORE_KEY", score);
