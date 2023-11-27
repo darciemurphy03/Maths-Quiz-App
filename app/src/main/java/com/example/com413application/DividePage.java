@@ -128,7 +128,8 @@ public class DividePage extends Fragment {
 
         String qNumber = String.valueOf(questionNumber);
         String displayQuestion = String.valueOf(displayQuestionNumber + 1);
-        qNumberDisplay.setText("Question " + displayQuestion);
+        displayQuestionNumber++;
+        qNumberDisplay.setText("Question " + displayQuestionNumber);
         questionRef = FirebaseDatabase.getInstance().getReference().child(qNumber).child("question");
 
         questionRef.addValueEventListener(new ValueEventListener() {

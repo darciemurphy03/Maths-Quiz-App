@@ -35,7 +35,6 @@
         android:layout_width="172dp"
         android:layout_height="93dp"
         android:padding="8dp"
-        android:text="24÷8"
         android:textAlignment="center"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +98,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/divideTitle"
+        android:id="@+id/subtractTitle"
         android:layout_width="134dp"
         android:layout_height="39dp"
         android:layout_marginTop="53dp"

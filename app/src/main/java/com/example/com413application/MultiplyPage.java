@@ -27,6 +27,7 @@ public class MultiplyPage extends Fragment {
     public int score;
     public int score2;
     int questionNumber = 0;
+    int displayQuestionNumber = 0;
     String answer;
     DatabaseReference questionRef, choice1Ref, choice2Ref, choice3Ref, choice4Ref, answerRef;
 
@@ -125,8 +126,9 @@ public class MultiplyPage extends Fragment {
     public void updateQuestion() {
 
         String qNumber = String.valueOf(questionNumber);
-        String displayQuestion = String.valueOf(questionNumber + 1);
-        qNumberDisplay.setText("Question " + displayQuestion);
+        String displayQuestion = String.valueOf(displayQuestionNumber + 1);
+        displayQuestionNumber++;
+        qNumberDisplay.setText("Question " + displayQuestionNumber);
         questionRef = FirebaseDatabase.getInstance().getReference().child(qNumber).child("question");
 
         questionRef.addValueEventListener(new ValueEventListener() {
