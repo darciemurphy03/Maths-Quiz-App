@@ -33,6 +33,7 @@
         android:backgroundTint="#60357C"
         android:text="exit"
         android:textSize="20sp"
+        app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
