@@ -1,4 +1,4 @@
-I used Android Studio to create the UI and Firebase for the realtime database.
+I used Android Studio to create the UI, and Firebase for the realtime database.
 Firebase was used to populate questions, and authenticate users.
 
 The realtime database was populated
