@@ -18,7 +18,8 @@ signing in. This feature was initially
 added with the intention of storing
 each user’s high score based on
 their UID on Firebase, but it wasn’t
-implemented. Instead, it just acts as
+implemented due to time constraints. Instead,
+it just acts as
 a method of viewing who has
 logged in by looking at the
 authentication database
